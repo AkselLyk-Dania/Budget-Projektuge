@@ -24,5 +24,6 @@ namespace Budget
         {
             InitializeComponent();
         }
+
     }
 }
