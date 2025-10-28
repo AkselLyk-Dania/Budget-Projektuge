@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,8 +28,7 @@ namespace Budget
         {
             InitializeComponent();
 
-            ListBoxIndtaegter.ItemsSource = indtægter.liste;
-            ListBoxUdgifter.ItemsSource = udgifter.liste;
+
         }
 
         class Item
@@ -60,6 +60,8 @@ namespace Budget
 
             InputNavn.Clear();
             InputKroner.Clear();
+
+            ListBoxIndtaegter.Items.Add(stringInputNavn + " " + stringInputKroner);
         }
 
         private void TilføjTilUdgifter(object sender, RoutedEventArgs e)
@@ -77,7 +79,7 @@ namespace Budget
 
         private void Udregn(object sender, RoutedEventArgs e)
         {
-
+          
         }
 
         public void KronerInput(object sender, TextCompositionEventArgs e)
