@@ -20,10 +20,23 @@ namespace Budget
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
+    }
+
+    public class BudgetListe //ItemCollection
+    {
+        //public string Task { get; set; }
+        List<>
+
+    }
+
+    public class Item
+    {
 
     }
 }
