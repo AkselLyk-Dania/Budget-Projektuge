@@ -23,8 +23,10 @@ namespace Budget
 
         public MainWindow()
         {
-            BudgetListe Udgifter = new List<BudgetListe>();
             InitializeComponent();
+            BudgetListe udgifter = new BudgetListe();
+            BudgetListe indtægter = new BudgetListe();
+            Indtægter.ItemsSource = indtægter.liste();
         }
 
         private void Vælg_Indtægt_Click(object sender, RoutedEventArgs e)
@@ -36,6 +38,23 @@ namespace Budget
         {
 
         }
+
+        private void Indtægter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+    }
+
+    public class Item
+    {
+        public int pris;
+        public string titel;
+
+        public Item(string titel, int pris)
+        {
+            this.titel = titel;
+            this.pris = pris;
+        }
     }
 
     public class BudgetListe //ItemCollection
@@ -45,9 +64,5 @@ namespace Budget
 
     }
 
-    public class Item
-    {
-        public int pris;
-        public string titel;
-    }
+
 }

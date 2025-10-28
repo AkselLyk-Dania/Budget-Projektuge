@@ -8,8 +8,8 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TextBox HorizontalAlignment="Left" Margin="225,38,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="92"/>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="212,94,470,179"/>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="410,94,272,179"/>
+        <ListBox x:Name="Indtægter" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="212,94,470,179" SelectionChanged="Indtægter_SelectionChanged"/>
+        <ListBox x:Name="Udgifter" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="410,94,272,179"/>
         <TextBox HorizontalAlignment="Left" Margin="423,38,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="92"/>
         <Button x:Name="Vælg_Indtægt" Content="Button" HorizontalAlignment="Left" Margin="237,70,0,0" VerticalAlignment="Top" Height="19" Width="68" Click="Vælg_Indtægt_Click"/>
         <Button x:Name="Vælg_udgift" Content="Button" HorizontalAlignment="Left" Margin="435,70,0,0" VerticalAlignment="Top" Height="19" Width="68" Click="Vælg_udgift_Click"/>
