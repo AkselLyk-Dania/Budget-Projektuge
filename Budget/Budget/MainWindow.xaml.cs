@@ -27,6 +27,8 @@ namespace Budget
         {
             InitializeComponent();
 
+            ListBoxIndtaegter.ItemsSource = indtægter.liste;
+            ListBoxUdgifter.ItemsSource = udgifter.liste;
         }
 
         class Item
@@ -34,11 +36,15 @@ namespace Budget
             public int kroner;
             public string navn;
 
+            public string Newtask { get; set; }
+            public bool IsCompleted { get; set; }
+
             public Item(string navn, int kroner)
             {
                 this.navn = navn;
                 this.kroner = kroner;
             }
+
         }
 
         class ItemCollection
@@ -52,13 +58,12 @@ namespace Budget
             string stringInputNavn = InputNavn.GetLineText(0);
             string stringInputKroner = InputKroner.GetLineText(0);
 
-            int integerInputKroner = 0;
-            if (stringInputKroner != "")
-            {
-                integerInputKroner = Convert.ToInt32(stringInputKroner);
-                Item hej = new Item(stringInputNavn, integerInputKroner);
-                indtægter.liste.Add(hej);
-            }
+            int integerInputKroner = Convert.ToInt32(stringInputKroner);
+            Item hej = new Item(stringInputNavn, integerInputKroner);
+            indtægter.liste.Add(hej);
+
+            ListBoxIndtaegter.ItemsSource = null;
+            ListBoxIndtaegter.ItemsSource = indtægter.liste;
 
             InputNavn.Clear();
             InputKroner.Clear();
@@ -66,7 +71,15 @@ namespace Budget
 
         private void TilføjTilUdgifter(object sender, RoutedEventArgs e)
         {
+            string stringInputNavn = InputNavn.GetLineText(0);
+            string stringInputKroner = InputKroner.GetLineText(0);
 
+            int integerInputKroner = Convert.ToInt32(stringInputKroner);
+            Item hej = new Item(stringInputNavn, integerInputKroner);
+            udgifter.liste.Add(hej);
+
+            InputNavn.Clear();
+            InputKroner.Clear();
         }
 
         private void Udregn(object sender, RoutedEventArgs e)
@@ -84,22 +97,13 @@ namespace Budget
 
         }
 
-        private void ListBoxIndtægter(object sender, SelectionChangedEventArgs e)
+
+        private void SelectionChanged_Indtaegter(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
-        private void ListBoxUdgifter(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void InputNavn_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void InputKroner_TextChanged(object sender, TextChangedEventArgs e)
+        private void SelectionChanged_Udgifter(object sender, SelectionChangedEventArgs e)
         {
 
         }
