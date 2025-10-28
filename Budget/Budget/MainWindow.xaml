@@ -7,13 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Margin="271,29,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="92" TextChanged="TextBox_TextChanged_1"/>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="212,94,470,179"/>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="410,94,272,179"/>
-        <TextBox HorizontalAlignment="Left" Margin="377,29,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="92" TextChanged="TextBox_TextChanged_2"/>
-        <Button Content="Tilføj til indtægter" HorizontalAlignment="Left" Margin="212,70,0,0" VerticalAlignment="Top" Height="19" Width="118" Click="Button_Click"/>
-        <Button Content="Tilføj til Udgifter" HorizontalAlignment="Left" Margin="410,70,0,0" VerticalAlignment="Top" Height="19" Width="118" Click="Button_Click_1"/>
-        <Button Content="Udregn" HorizontalAlignment="Left" Margin="314,271,0,0" VerticalAlignment="Top" Height="28" Width="115"/>
-        <TextBox HorizontalAlignment="Left" Margin="292,304,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160" Height="29" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="InputNavn" HorizontalAlignment="Left" Margin="271,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92" TextInput="NavnInput"/>
+        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="212,94,470,179" SelectionChanged="ListBoxIndtægter"/>
+        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="410,94,272,179" SelectionChanged="ListBoxUdgifter"/>
+        <TextBox x:Name="InputKroner" HorizontalAlignment="Left" Margin="377,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92" TextInput="KronerInput"/>
+        <Button x:Name="ButtonIndtaegter" Content="Tilføj til indtægter" HorizontalAlignment="Left" Margin="212,70,0,0" VerticalAlignment="Top" Height="19" Width="118" Click="TilføjTilIndtægter"/>
+        <Button Content="Tilføj til Udgifter" HorizontalAlignment="Left" Margin="410,70,0,0" VerticalAlignment="Top" Height="19" Width="118" Click="TilføjTilUdgifter"/>
+        <Button Content="Udregn" HorizontalAlignment="Left" Margin="314,271,0,0" VerticalAlignment="Top" Height="28" Width="115" Click="Udregn"/>
     </Grid>
 </Window>

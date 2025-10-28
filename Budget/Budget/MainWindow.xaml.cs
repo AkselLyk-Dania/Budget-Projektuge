@@ -20,11 +20,13 @@ namespace Budget
     /// </summary>
     public partial class MainWindow : Window
     {
+        ItemCollection udgifter = new ItemCollection();
+        ItemCollection indtægter = new ItemCollection();
+
         public MainWindow()
         {
             InitializeComponent();
-            ItemCollection udgifter = new ItemCollection();
-            ItemCollection indtægter = new ItemCollection();
+            
         }
 
         class Item
@@ -41,27 +43,20 @@ namespace Budget
 
         class ItemCollection
         {
-            public List<Item> liste;
+            public List<Item> liste = new List<Item>();
         }
 
-        private void T(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged_2(object sender, TextChangedEventArgs e)
-        {
-
-        }
 
         private void TilføjTilIndtægter(object sender, RoutedEventArgs e)
         {
+            string stringInputNavn = InputNavn.GetLineText(0);
+            string stringInputKroner = InputKroner.GetLineText(0);
 
+            int integerInputKroner = Convert.ToInt32(stringInputKroner);
+            Item hej = new Item(stringInputNavn, integerInputKroner);
+            indtægter.liste.Add(hej);
+
+            InputNavn.Clear();
         }
 
         private void TilføjTilUdgifter(object sender, RoutedEventArgs e)
@@ -69,7 +64,27 @@ namespace Budget
 
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Udregn(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void KronerInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
+
+        public void NavnInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
+
+        private void ListBoxIndtægter(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ListBoxUdgifter(object sender, SelectionChangedEventArgs e)
         {
 
         }
