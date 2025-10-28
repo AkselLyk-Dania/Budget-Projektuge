@@ -26,7 +26,9 @@ namespace Budget
         public MainWindow()
         {
             InitializeComponent();
-            
+
+            ListBoxIndtaegter.ItemsSource = indtægter.liste;
+            ListBoxUdgifter.ItemsSource = udgifter.liste;
         }
 
         class Item
@@ -57,11 +59,20 @@ namespace Budget
             indtægter.liste.Add(hej);
 
             InputNavn.Clear();
+            InputKroner.Clear();
         }
 
         private void TilføjTilUdgifter(object sender, RoutedEventArgs e)
         {
+            string stringInputNavn = InputNavn.GetLineText(0);
+            string stringInputKroner = InputKroner.GetLineText(0);
 
+            int integerInputKroner = Convert.ToInt32(stringInputKroner);
+            Item hej = new Item(stringInputNavn, integerInputKroner);
+            udgifter.liste.Add(hej);
+
+            InputNavn.Clear();
+            InputKroner.Clear();
         }
 
         private void Udregn(object sender, RoutedEventArgs e)
@@ -79,12 +90,13 @@ namespace Budget
 
         }
 
-        private void ListBoxIndtægter(object sender, SelectionChangedEventArgs e)
-        {
 
+        private void SelectionChanged_Indtaegter(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
 
-        private void ListBoxUdgifter(object sender, SelectionChangedEventArgs e)
+        private void SelectionChanged_Udgifter(object sender, SelectionChangedEventArgs e)
         {
 
         }
