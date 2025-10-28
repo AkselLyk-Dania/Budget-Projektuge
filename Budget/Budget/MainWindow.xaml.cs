@@ -26,9 +26,6 @@ namespace Budget
         public MainWindow()
         {
             InitializeComponent();
-
-            ListBoxIndtaegter.ItemsSource = indtægter.liste;
-            ListBoxUdgifter.ItemsSource = udgifter.liste;
         }
 
         class Item
@@ -62,8 +59,7 @@ namespace Budget
             Item hej = new Item(stringInputNavn, integerInputKroner);
             indtægter.liste.Add(hej);
 
-            ListBoxIndtaegter.ItemsSource = null;
-            ListBoxIndtaegter.ItemsSource = indtægter.liste;
+            ListBoxIndtaegter.Items.Add(stringInputNavn + " " + stringInputKroner);
 
             InputNavn.Clear();
             InputKroner.Clear();
