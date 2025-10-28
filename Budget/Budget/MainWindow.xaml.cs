@@ -20,49 +20,88 @@ namespace Budget
     /// </summary>
     public partial class MainWindow : Window
     {
+        ItemCollection udgifter = new ItemCollection();
+        ItemCollection indtægter = new ItemCollection();
 
         public MainWindow()
         {
             InitializeComponent();
-            BudgetListe udgifter = new BudgetListe();
-            BudgetListe indtægter = new BudgetListe();
-            Indtægter.ItemsSource = indtægter.liste();
+
         }
 
-        private void Vælg_Indtægt_Click(object sender, RoutedEventArgs e)
+        class Item
+        {
+            public int kroner;
+            public string navn;
+
+            public Item(string navn, int kroner)
+            {
+                this.navn = navn;
+                this.kroner = kroner;
+            }
+        }
+
+        class ItemCollection
+        {
+            public List<Item> liste = new List<Item>();
+        }
+
+
+        private void TilføjTilIndtægter(object sender, RoutedEventArgs e)
+        {
+            string stringInputNavn = InputNavn.GetLineText(0);
+            string stringInputKroner = InputKroner.GetLineText(0);
+
+            int integerInputKroner = 0;
+            if (stringInputKroner != "")
+            {
+                integerInputKroner = Convert.ToInt32(stringInputKroner);
+                Item hej = new Item(stringInputNavn, integerInputKroner);
+                indtægter.liste.Add(hej);
+            }
+
+            InputNavn.Clear();
+            InputKroner.Clear();
+        }
+
+        private void TilføjTilUdgifter(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Vælg_udgift_Click(object sender, RoutedEventArgs e)
+        private void Udregn(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Indtægter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void KronerInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
+
+        public void NavnInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
+
+        private void ListBoxIndtægter(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ListBoxUdgifter(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void InputNavn_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void InputKroner_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
     }
-
-    public class Item
-    {
-        public int pris;
-        public string titel;
-
-        public Item(string titel, int pris)
-        {
-            this.titel = titel;
-            this.pris = pris;
-        }
-    }
-
-    public class BudgetListe //ItemCollection
-    {
-        //public string Task { get; set; }
-        List<Item> liste;
-
-    }
-
-
 }
