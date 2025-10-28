@@ -41,8 +41,7 @@ namespace Budget
     public class BudgetListe //ItemCollection
     {
         //public string Task { get; set; }
-        List<Item> Udgifter;
-        List<Item> Indtægter;
+        List<Item> liste;
 
     }
 
