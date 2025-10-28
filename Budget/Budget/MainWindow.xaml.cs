@@ -23,20 +23,32 @@ namespace Budget
 
         public MainWindow()
         {
+            BudgetListe Udgifter = new List<BudgetListe>();
             InitializeComponent();
         }
 
+        private void Vælg_Indtægt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Vælg_udgift_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
     public class BudgetListe //ItemCollection
     {
         //public string Task { get; set; }
-        List<>
+        List<Item> Udgifter;
+        List<Item> Indtægter;
 
     }
 
     public class Item
     {
-
+        public int pris;
+        public string titel;
     }
 }
