@@ -23,7 +23,55 @@ namespace Budget
         public MainWindow()
         {
             InitializeComponent();
+            ItemCollection udgifter = new ItemCollection();
+            ItemCollection indtægter = new ItemCollection();
         }
 
+        class Item
+        {
+            public int kroner;
+            public string navn;
+
+            public Item(string navn, int kroner)
+            {
+                this.navn = navn;
+                this.kroner = kroner;
+            }
+        }
+
+        class ItemCollection
+        {
+            public List<Item> liste;
+        }
+
+        private void T(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged_2(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void TilføjTilIndtægter(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TilføjTilUdgifter(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
