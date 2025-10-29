@@ -36,15 +36,11 @@ namespace Budget
             public string Newtask { get; set; }
             public bool IsCompleted { get; set; }
 
-            public Item(string navn, int kroner)
-            {
-                this.navn = navn;
-                this.kroner = kroner;
-            }
+            public Item(int kroner) { this.kroner = kroner; }
 
         }
 
-        class ItemCollection
+        class ItemCollection //Test
         {
             public List<Item> liste = new List<Item>();
         }
@@ -56,7 +52,7 @@ namespace Budget
             string stringInputKroner = InputKroner.GetLineText(0);
 
             int integerInputKroner = Convert.ToInt32(stringInputKroner);
-            Item hej = new Item(stringInputNavn, integerInputKroner);
+            Item hej = new Item(integerInputKroner);
             indtægter.liste.Add(hej);
 
             ListBoxIndtaegter.Items.Add(stringInputNavn + " " + stringInputKroner);
@@ -71,8 +67,10 @@ namespace Budget
             string stringInputKroner = InputKroner.GetLineText(0);
 
             int integerInputKroner = Convert.ToInt32(stringInputKroner);
-            Item hej = new Item(stringInputNavn, integerInputKroner);
+            Item hej = new Item(integerInputKroner);
             udgifter.liste.Add(hej);
+
+            ListBoxUdgifter.Items.Add(stringInputNavn + " -" + stringInputKroner);
 
             InputNavn.Clear();
             InputKroner.Clear();
