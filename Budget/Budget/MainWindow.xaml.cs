@@ -75,6 +75,8 @@ namespace Budget
 
             InputNavn.Clear();
             InputKroner.Clear();
+
+            ListBoxUdgifter.Items.Add(stringInputNavn + " " + stringInputKroner);
         }
 
         private void Udregn(object sender, RoutedEventArgs e)
