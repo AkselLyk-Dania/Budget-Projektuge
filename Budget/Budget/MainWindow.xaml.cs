@@ -40,7 +40,7 @@ namespace Budget
 
         }
 
-        class ItemCollection //Test
+        class ItemCollection
         {
             public List<Item> liste = new List<Item>();
         }
@@ -90,7 +90,6 @@ namespace Budget
         {
 
         }
-
 
         private void SelectionChanged_Indtaegter(object sender, SelectionChangedEventArgs e)
         {
