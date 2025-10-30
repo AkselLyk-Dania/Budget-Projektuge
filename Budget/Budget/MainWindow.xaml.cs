@@ -31,12 +31,15 @@ namespace Budget
         class Item
         {
             public int kroner;
+            public static int sum = 0;
             public string navn;
 
             public string Newtask { get; set; }
             public bool IsCompleted { get; set; }
 
-            public Item(int kroner) { this.kroner = kroner; }
+            public Item(int kroner, string navn) { this.kroner = kroner; this.navn = navn; }
+
+            //public void AddSum(int newsum) { sum }
 
         }
 
@@ -52,8 +55,10 @@ namespace Budget
             string stringInputKroner = InputKroner.GetLineText(0);
 
             int integerInputKroner = Convert.ToInt32(stringInputKroner);
-            Item hej = new Item(integerInputKroner);
+            Item hej = new Item(integerInputKroner, stringInputNavn);
             indtægter.liste.Add(hej);
+
+            Item.sum = Item.sum + integerInputKroner;
 
             ListBoxIndtaegter.Items.Add(stringInputNavn + " " + stringInputKroner);
 
@@ -67,8 +72,10 @@ namespace Budget
             string stringInputKroner = InputKroner.GetLineText(0);
 
             int integerInputKroner = Convert.ToInt32(stringInputKroner);
-            Item hej = new Item(integerInputKroner);
+            Item hej = new Item(integerInputKroner, stringInputNavn);
             udgifter.liste.Add(hej);
+
+            Item.sum = Item.sum - integerInputKroner;
 
             ListBoxUdgifter.Items.Add(stringInputNavn + " -" + stringInputKroner);
 
@@ -78,7 +85,7 @@ namespace Budget
 
         private void Udregn(object sender, RoutedEventArgs e)
         {
-
+            string total = udgifter.liste.Sum();
         }
 
         public void KronerInput(object sender, TextCompositionEventArgs e)
