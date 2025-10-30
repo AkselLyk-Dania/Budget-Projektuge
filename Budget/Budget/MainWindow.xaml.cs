@@ -88,5 +88,10 @@ namespace Budget
         {
 
         }
+
+        private void InputNavn_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

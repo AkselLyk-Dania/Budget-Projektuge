@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="InputNavn" HorizontalAlignment="Left" Margin="119,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92" TextInput="NavnInput"/>
+        <TextBox x:Name="InputNavn" HorizontalAlignment="Left" Margin="119,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92" TextInput="NavnInput" TextChanged="InputNavn_TextChanged"/>
         <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="39,115,412,27" SelectionChanged="ListBoxIndtægter"/>
         <TextBox x:Name="InputKroner" HorizontalAlignment="Left" Margin="119,64,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92" TextInput="KronerInput"/>
         <Button x:Name="ButtonIndtaegter" Content="Tilføj til indtægter" HorizontalAlignment="Left" Margin="270,37,0,0" VerticalAlignment="Top" Height="19" Width="118" Click="TilføjTilIndtægter"/>
