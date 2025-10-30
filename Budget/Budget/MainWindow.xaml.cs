@@ -54,8 +54,8 @@ namespace Budget
 
             int integerInputKroner = Convert.ToInt32(stringInputKroner);
             Item hej = new Item(stringInputNavn, integerInputKroner);
+            
             indtægter.liste.Add(hej);
-
             InputNavn.Clear();
         }
 
