@@ -29,7 +29,7 @@ namespace Budget
         {
             InitializeComponent();
 
-
+            
         }
 
         class Item
@@ -55,9 +55,11 @@ namespace Budget
             string stringInputNavn = InputNavn.GetLineText(0);
             string stringInputKroner = InputKroner.GetLineText(0);
 
-            if (!string.IsNullOrEmpty(stringInputKroner) && !string.IsNullOrEmpty(stringInputNavn))
+            int integerInputKroner;
+            bool kronerErTal = int.TryParse(stringInputKroner, out integerInputKroner);
+
+            if (!string.IsNullOrEmpty(stringInputKroner) && !string.IsNullOrEmpty(stringInputNavn) && kronerErTal)
             { //Sørger for at der er tastet både navn og kroner ind før den bliver oprettet
-                int integerInputKroner = Convert.ToInt32(stringInputKroner);
                 Item hej = new Item(stringInputNavn, integerInputKroner);
                 indtægter.liste.Add(hej);
                 ListBoxIndtaegter.Items.Add(stringInputNavn + ": +" + stringInputKroner + "kr");
@@ -72,9 +74,11 @@ namespace Budget
             string stringInputNavn = InputNavn.GetLineText(0);
             string stringInputKroner = InputKroner.GetLineText(0);
 
-            if (!string.IsNullOrEmpty(stringInputKroner) && !string.IsNullOrEmpty(stringInputNavn))
+            int integerInputKroner;
+            bool kronerErTal = int.TryParse(stringInputKroner, out integerInputKroner);
+
+            if (!string.IsNullOrEmpty(stringInputKroner) && !string.IsNullOrEmpty(stringInputNavn) && kronerErTal)
             {
-                int integerInputKroner = Convert.ToInt32(stringInputKroner);
                 Item hej = new Item(stringInputNavn, integerInputKroner);
                 udgifter.liste.Add(hej);
                 ListBoxUdgifter.Items.Add(stringInputNavn + ": -" + stringInputKroner + "kr");
