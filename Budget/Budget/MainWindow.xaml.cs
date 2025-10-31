@@ -55,14 +55,16 @@ namespace Budget
             string stringInputNavn = InputNavn.GetLineText(0);
             string stringInputKroner = InputKroner.GetLineText(0);
 
-            int integerInputKroner = Convert.ToInt32(stringInputKroner);
-            Item hej = new Item(stringInputNavn, integerInputKroner);
-            indtægter.liste.Add(hej);
+            if (!string.IsNullOrEmpty(stringInputKroner) && !string.IsNullOrEmpty(stringInputNavn))
+            { //Sørger for at der er tastet både navn og kroner ind før den bliver oprettet
+                int integerInputKroner = Convert.ToInt32(stringInputKroner);
+                Item hej = new Item(stringInputNavn, integerInputKroner);
+                indtægter.liste.Add(hej);
+                ListBoxIndtaegter.Items.Add(stringInputNavn + ": +" + stringInputKroner + "kr");
+                InputNavn.Clear();
+                InputKroner.Clear();
+            }
 
-            InputNavn.Clear();
-            InputKroner.Clear();
-
-            ListBoxIndtaegter.Items.Add(stringInputNavn + ": +" + stringInputKroner + "kr");
         }
 
         private void TilføjTilUdgifter(object sender, RoutedEventArgs e)
@@ -70,14 +72,16 @@ namespace Budget
             string stringInputNavn = InputNavn.GetLineText(0);
             string stringInputKroner = InputKroner.GetLineText(0);
 
-            int integerInputKroner = Convert.ToInt32(stringInputKroner);
-            Item hej = new Item(stringInputNavn, integerInputKroner);
-            udgifter.liste.Add(hej);
+            if (!string.IsNullOrEmpty(stringInputKroner) && !string.IsNullOrEmpty(stringInputNavn))
+            {
+                int integerInputKroner = Convert.ToInt32(stringInputKroner);
+                Item hej = new Item(stringInputNavn, integerInputKroner);
+                udgifter.liste.Add(hej);
+                ListBoxUdgifter.Items.Add(stringInputNavn + ": -" + stringInputKroner + "kr");
+                InputNavn.Clear();
+                InputKroner.Clear();
+            }
 
-            InputNavn.Clear();
-            InputKroner.Clear();
-
-            ListBoxUdgifter.Items.Add(stringInputNavn + ": -" + stringInputKroner + "kr");
         }
 
         private void Udregn(object sender, RoutedEventArgs e)
