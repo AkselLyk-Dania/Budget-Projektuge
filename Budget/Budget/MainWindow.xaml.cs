@@ -106,7 +106,7 @@ namespace Budget
 
         private void SelectionChanged_Indtaegter(object sender, SelectionChangedEventArgs e)
         {
-            
+
         }
 
         private void SelectionChanged_Udgifter(object sender, SelectionChangedEventArgs e)
