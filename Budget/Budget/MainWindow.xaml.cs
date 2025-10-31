@@ -57,6 +57,10 @@ namespace Budget
             
             indtægter.liste.Add(hej);
             InputNavn.Clear();
+
+            listBox.Items.Add(stringInputNavn + " " + stringInputKroner);
+            listBox.Items.Add("test");
+
         }
 
         private void TilføjTilUdgifter(object sender, RoutedEventArgs e)

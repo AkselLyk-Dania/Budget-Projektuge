@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36603.0 d17.14
+VisualStudioVersion = 17.14.36603.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budget", "Budget\Budget.csproj", "{599FF329-B766-493F-B0FB-7920E68E7939}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFButik", "WPFButik\WPFButik.csproj", "{69C78271-0878-45FD-A9D0-8E504E1DB09C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{599FF329-B766-493F-B0FB-7920E68E7939}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{599FF329-B766-493F-B0FB-7920E68E7939}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{599FF329-B766-493F-B0FB-7920E68E7939}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69C78271-0878-45FD-A9D0-8E504E1DB09C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69C78271-0878-45FD-A9D0-8E504E1DB09C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69C78271-0878-45FD-A9D0-8E504E1DB09C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69C78271-0878-45FD-A9D0-8E504E1DB09C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

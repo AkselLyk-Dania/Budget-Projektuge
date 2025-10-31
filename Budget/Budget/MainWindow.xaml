@@ -8,15 +8,14 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TextBox x:Name="InputNavn" HorizontalAlignment="Left" Margin="119,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92" TextInput="NavnInput" TextChanged="InputNavn_TextChanged"/>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="39,115,412,27" SelectionChanged="ListBoxIndtægter"/>
         <TextBox x:Name="InputKroner" HorizontalAlignment="Left" Margin="119,64,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92" TextInput="KronerInput"/>
         <Button x:Name="ButtonIndtaegter" Content="Tilføj til indtægter" HorizontalAlignment="Left" Margin="270,37,0,0" VerticalAlignment="Top" Height="19" Width="118" Click="TilføjTilIndtægter"/>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="497,47,47,216"/>
         <Label Content="Budget App" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="188"/>
         <Label Content="Navn" HorizontalAlignment="Left" Margin="24,34,0,0" VerticalAlignment="Top" Width="90"/>
         <Label Content="Beløb" HorizontalAlignment="Left" Margin="24,60,0,0" VerticalAlignment="Top" Width="90"/>
         <Button x:Name="ButtonIndtaegter_Copy" Content="Tilføj til udgifter" HorizontalAlignment="Left" Margin="270,63,0,0" VerticalAlignment="Top" Height="19" Width="118" Click="TilføjTilIndtægter"/>
         <Label Content="Budget:" HorizontalAlignment="Left" Margin="497,16,0,0" VerticalAlignment="Top" Width="188"/>
         <Label Content="Poster" HorizontalAlignment="Left" Margin="39,89,0,0" VerticalAlignment="Top" Width="188"/>
+        <ListBox x:Name="listBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="39,120,329,139"/>
     </Grid>
 </Window>
