@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,21 +28,20 @@ namespace Budget
         public MainWindow()
         {
             InitializeComponent();
+
+
         }
 
         class Item
         {
             public int kroner;
-            public static int sum = 0;
             public string navn;
 
-            public string Newtask { get; set; }
-            public bool IsCompleted { get; set; }
-
-            public Item(int kroner, string navn) { this.kroner = kroner; this.navn = navn; }
-
-            //public void AddSum(int newsum) { sum }
-
+            public Item(string navn, int kroner)
+            {
+                this.navn = navn;
+                this.kroner = kroner;
+            }
         }
 
         class ItemCollection
@@ -54,16 +55,16 @@ namespace Budget
             string stringInputNavn = InputNavn.GetLineText(0);
             string stringInputKroner = InputKroner.GetLineText(0);
 
-            int integerInputKroner = Convert.ToInt32(stringInputKroner);
-            Item hej = new Item(integerInputKroner, stringInputNavn);
-            indtægter.liste.Add(hej);
+            if (!string.IsNullOrEmpty(stringInputKroner) && !string.IsNullOrEmpty(stringInputNavn))
+            { //Sørger for at der er tastet både navn og kroner ind før den bliver oprettet
+                int integerInputKroner = Convert.ToInt32(stringInputKroner);
+                Item hej = new Item(stringInputNavn, integerInputKroner);
+                indtægter.liste.Add(hej);
+                ListBoxIndtaegter.Items.Add(stringInputNavn + ": +" + stringInputKroner + "kr");
+                InputNavn.Clear();
+                InputKroner.Clear();
+            }
 
-            Item.sum = Item.sum + integerInputKroner;
-
-            ListBoxIndtaegter.Items.Add(stringInputNavn + " " + stringInputKroner);
-
-            InputNavn.Clear();
-            InputKroner.Clear();
         }
 
         private void TilføjTilUdgifter(object sender, RoutedEventArgs e)
@@ -71,21 +72,29 @@ namespace Budget
             string stringInputNavn = InputNavn.GetLineText(0);
             string stringInputKroner = InputKroner.GetLineText(0);
 
-            int integerInputKroner = Convert.ToInt32(stringInputKroner);
-            Item hej = new Item(integerInputKroner, stringInputNavn);
-            udgifter.liste.Add(hej);
+            if (!string.IsNullOrEmpty(stringInputKroner) && !string.IsNullOrEmpty(stringInputNavn))
+            {
+                int integerInputKroner = Convert.ToInt32(stringInputKroner);
+                Item hej = new Item(stringInputNavn, integerInputKroner);
+                udgifter.liste.Add(hej);
+                ListBoxUdgifter.Items.Add(stringInputNavn + ": -" + stringInputKroner + "kr");
+                InputNavn.Clear();
+                InputKroner.Clear();
+            }
 
-            Item.sum = Item.sum - integerInputKroner;
-
-            ListBoxUdgifter.Items.Add(stringInputNavn + " -" + stringInputKroner);
-
-            InputNavn.Clear();
-            InputKroner.Clear();
         }
 
         private void Udregn(object sender, RoutedEventArgs e)
         {
-            string total = udgifter.liste.Sum();
+            int indtaegterSum = indtægter.liste.Sum(Item => Item.kroner);
+            int udgifterSum = udgifter.liste.Sum(Item => Item.kroner);
+
+            int sumAfBegge = indtaegterSum - udgifterSum;
+            string sumText = Convert.ToString(sumAfBegge);
+
+            SumBox.Clear();
+
+            SumBox.Text = sumText + "kr";
         }
 
         public void KronerInput(object sender, TextCompositionEventArgs e)
@@ -98,6 +107,7 @@ namespace Budget
 
         }
 
+
         private void SelectionChanged_Indtaegter(object sender, SelectionChangedEventArgs e)
         {
 
@@ -106,6 +116,40 @@ namespace Budget
         private void SelectionChanged_Udgifter(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void SumBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void ButtonReset_Click(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("Reset", "Er du sikker på at du vil starte forfra?", MessageBoxButton.OKCancel);
+            ListBoxIndtaegter.Items.Clear();
+            ListBoxUdgifter.Items.Clear();
+            SumBox.Clear();
+
+            indtægter.liste.Clear();
+            udgifter.liste.Clear();
+        }
+
+        private void ButtonUndoIndtaegter_Click(object sender, RoutedEventArgs e)
+        {
+            if (indtægter.liste.Count > 0)
+            {
+                indtægter.liste.RemoveAt(indtægter.liste.Count - 1);
+                ListBoxIndtaegter.Items.RemoveAt(ListBoxIndtaegter.Items.Count - 1);
+            }
+        }
+
+        private void ButtonUndoUdgifter_Click(object sender, RoutedEventArgs e)
+        {
+            if (udgifter.liste.Count > 0)
+            {
+                udgifter.liste.RemoveAt(udgifter.liste.Count - 1);
+                ListBoxUdgifter.Items.RemoveAt(ListBoxUdgifter.Items.Count - 1);
+            }
         }
     }
 }
