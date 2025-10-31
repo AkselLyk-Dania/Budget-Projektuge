@@ -62,7 +62,7 @@ namespace Budget
             { //Sørger for at der er tastet både navn og kroner ind før den bliver oprettet
                 Item hej = new Item(stringInputNavn, integerInputKroner);
                 indtægter.liste.Add(hej);
-                ListBoxIndtaegter.Items.Add(stringInputNavn + ": +" + stringInputKroner + "kr");
+                ListBoxIndtaegter.Items.Add(stringInputNavn + ":   +" + stringInputKroner + " kr");
                 InputNavn.Clear();
                 InputKroner.Clear();
             }
@@ -81,7 +81,7 @@ namespace Budget
             {
                 Item hej = new Item(stringInputNavn, integerInputKroner);
                 udgifter.liste.Add(hej);
-                ListBoxUdgifter.Items.Add(stringInputNavn + ": -" + stringInputKroner + "kr");
+                ListBoxUdgifter.Items.Add(stringInputNavn + ":   -" + stringInputKroner + " kr");
                 InputNavn.Clear();
                 InputKroner.Clear();
             }
@@ -98,7 +98,7 @@ namespace Budget
 
             SumBox.Clear();
 
-            SumBox.Text = sumText + "kr";
+            SumBox.Text = sumText + " kr";
         }
 
         public void KronerInput(object sender, TextCompositionEventArgs e)
