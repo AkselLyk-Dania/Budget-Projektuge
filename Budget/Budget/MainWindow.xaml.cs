@@ -74,7 +74,6 @@ namespace Budget
             Item hej = new Item(stringInputNavn, integerInputKroner);
 
             indtægter.liste.Add(hej);
-           
 
             listBox.Items.Add(stringInputNavn + " " + stringInputKroner);
             //listBox.Items.Add("test");
