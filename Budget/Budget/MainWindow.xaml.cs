@@ -56,16 +56,30 @@ namespace Budget
             Item hej = new Item(stringInputNavn, integerInputKroner);
             
             indtægter.liste.Add(hej);
-            InputNavn.Clear();
+            
 
             listBox.Items.Add(stringInputNavn + " " + stringInputKroner);
-            listBox.Items.Add("test");
+            //listBox.Items.Add("test");
+            InputNavn.Clear();
+            InputKroner.Clear();
 
         }
 
         private void TilføjTilUdgifter(object sender, RoutedEventArgs e)
         {
+            string stringInputNavn = InputNavn.GetLineText(0);
+            string stringInputKroner = InputKroner.GetLineText(0);
 
+            int integerInputKroner = Convert.ToInt32(stringInputKroner);
+            Item hej = new Item(stringInputNavn, integerInputKroner);
+
+            indtægter.liste.Add(hej);
+           
+
+            listBox.Items.Add(stringInputNavn + " " + stringInputKroner);
+            //listBox.Items.Add("test");
+            InputNavn.Clear();
+            InputKroner.Clear();
         }
 
         private void Udregn(object sender, RoutedEventArgs e)
