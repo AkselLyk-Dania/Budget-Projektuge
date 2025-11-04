@@ -55,11 +55,11 @@ namespace Budget
             int integerInputKroner = Convert.ToInt32(stringInputKroner);
             Item hej = new Item(stringInputNavn, integerInputKroner);
             
-            indtægter.liste.Add(hej);
+            //indtægter.liste.Add(hej);
             
 
             listBox.Items.Add(stringInputNavn + " " + stringInputKroner);
-            //listBox.Items.Add("test");
+            
             InputNavn.Clear();
             InputKroner.Clear();
 
@@ -69,14 +69,14 @@ namespace Budget
         {
             string stringInputNavn = InputNavn.GetLineText(0);
             string stringInputKroner = InputKroner.GetLineText(0);
-
             int integerInputKroner = Convert.ToInt32(stringInputKroner);
-            Item hej = new Item(stringInputNavn, integerInputKroner);
+            int integerInputKroner *= -1;
+            Item hej2 = new Item(stringInputNavn,integerInputKroner);
 
-            indtægter.liste.Add(hej);
+            //indtægter.liste.Add(hej);
 
-            listBox.Items.Add(stringInputNavn + " " + stringInputKroner);
-            //listBox.Items.Add("test");
+            listBox.Items.Add(hej2);
+            
             InputNavn.Clear();
             InputKroner.Clear();
         }
