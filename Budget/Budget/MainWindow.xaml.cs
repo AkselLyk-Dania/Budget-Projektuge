@@ -66,9 +66,9 @@ namespace Budget
             string stringInputNavn = InputNavn.GetLineText(0);
             string stringInputKroner = InputKroner.GetLineText(0);
 
-            int stringInputKroner2 = Convert.ToInt32(stringInputKroner);
+            int stringInputKroner3 = Convert.ToInt32(stringInputKroner);
 
-            listBox.Items.Add(stringInputNavn + " 1" + stringInputKroner2);
+            listBox.Items.Add(stringInputNavn + " 1" + stringInputKroner3);
 
             InputNavn.Clear();
             InputKroner.Clear();
