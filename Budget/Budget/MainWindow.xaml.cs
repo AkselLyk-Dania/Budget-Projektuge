@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Budget
 {
@@ -23,13 +24,11 @@ namespace Budget
     public partial class MainWindow : Window
     {
         ItemCollection udgifter = new ItemCollection();
-        ItemCollection indtægter = new ItemCollection();
+        ItemCollection indtaegter = new ItemCollection();
 
         public MainWindow()
         {
             InitializeComponent();
-
-
         }
 
         class Item
@@ -49,22 +48,23 @@ namespace Budget
             public List<Item> liste = new List<Item>();
         }
 
-
-        private void TilføjTilIndtægter(object sender, RoutedEventArgs e)
+        private void TilføjTilIndtaegter(object sender, RoutedEventArgs e)
         {
             string stringInputNavn = InputNavn.GetLineText(0);
             string stringInputKroner = InputKroner.GetLineText(0);
 
-            if (!string.IsNullOrEmpty(stringInputKroner) && !string.IsNullOrEmpty(stringInputNavn))
-            { //Sørger for at der er tastet både navn og kroner ind før den bliver oprettet
-                int integerInputKroner = Convert.ToInt32(stringInputKroner);
-                Item hej = new Item(stringInputNavn, integerInputKroner);
-                indtægter.liste.Add(hej);
-                ListBoxIndtaegter.Items.Add(stringInputNavn + ": +" + stringInputKroner + "kr");
+            int integerInputKroner;
+            bool kronerErTal = int.TryParse(stringInputKroner, out integerInputKroner);
+
+            if (!string.IsNullOrEmpty(stringInputKroner) && !string.IsNullOrEmpty(stringInputNavn) && kronerErTal)
+            {
+                Item item = new Item(stringInputNavn, integerInputKroner);
+                indtaegter.liste.Add(item);
+                ListBoxIndtaegter.Items.Add(stringInputNavn + ":   +" + stringInputKroner + " kr");
+
                 InputNavn.Clear();
                 InputKroner.Clear();
             }
-
         }
 
         private void TilføjTilUdgifter(object sender, RoutedEventArgs e)
@@ -72,21 +72,23 @@ namespace Budget
             string stringInputNavn = InputNavn.GetLineText(0);
             string stringInputKroner = InputKroner.GetLineText(0);
 
-            if (!string.IsNullOrEmpty(stringInputKroner) && !string.IsNullOrEmpty(stringInputNavn))
+            int integerInputKroner;
+            bool kronerErTal = int.TryParse(stringInputKroner, out integerInputKroner);
+
+            if (!string.IsNullOrEmpty(stringInputKroner) && !string.IsNullOrEmpty(stringInputNavn) && kronerErTal)
             {
-                int integerInputKroner = Convert.ToInt32(stringInputKroner);
-                Item hej = new Item(stringInputNavn, integerInputKroner);
-                udgifter.liste.Add(hej);
-                ListBoxUdgifter.Items.Add(stringInputNavn + ": -" + stringInputKroner + "kr");
+                Item item = new Item(stringInputNavn, integerInputKroner);
+                udgifter.liste.Add(item);
+                ListBoxUdgifter.Items.Add(stringInputNavn + ":   -" + stringInputKroner + " kr");
+
                 InputNavn.Clear();
                 InputKroner.Clear();
             }
-
         }
 
         private void Udregn(object sender, RoutedEventArgs e)
         {
-            int indtaegterSum = indtægter.liste.Sum(Item => Item.kroner);
+            int indtaegterSum = indtaegter.liste.Sum(Item => Item.kroner);
             int udgifterSum = udgifter.liste.Sum(Item => Item.kroner);
 
             int sumAfBegge = indtaegterSum - udgifterSum;
@@ -94,7 +96,38 @@ namespace Budget
 
             SumBox.Clear();
 
-            SumBox.Text = sumText + "kr";
+            SumBox.Text = sumText + " kr";
+        }
+
+        private void ButtonReset_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Er du sikker på at du vil slette alt?", "Reset", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                ListBoxIndtaegter.Items.Clear();
+                ListBoxUdgifter.Items.Clear();
+                SumBox.Clear();
+
+                indtaegter.liste.Clear();
+                udgifter.liste.Clear();
+            }
+        }
+
+        private void ButtonUndoIndtaegter_Click(object sender, RoutedEventArgs e)
+        {
+            if (indtaegter.liste.Count > 0)
+            {
+                indtaegter.liste.RemoveAt(indtaegter.liste.Count - 1);
+                ListBoxIndtaegter.Items.RemoveAt(ListBoxIndtaegter.Items.Count - 1);
+            }
+        }
+
+        private void ButtonUndoUdgifter_Click(object sender, RoutedEventArgs e)
+        {
+            if (udgifter.liste.Count > 0)
+            {
+                udgifter.liste.RemoveAt(udgifter.liste.Count - 1);
+                ListBoxUdgifter.Items.RemoveAt(ListBoxUdgifter.Items.Count - 1);
+            }
         }
 
         public void KronerInput(object sender, TextCompositionEventArgs e)
@@ -106,7 +139,6 @@ namespace Budget
         {
 
         }
-
 
         private void SelectionChanged_Indtaegter(object sender, SelectionChangedEventArgs e)
         {
@@ -121,35 +153,6 @@ namespace Budget
         private void SumBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-        }
-
-        private void ButtonReset_Click(object sender, RoutedEventArgs e)
-        {
-            //MessageBox.Show("Reset", "Er du sikker på at du vil starte forfra?", MessageBoxButton.OKCancel);
-            ListBoxIndtaegter.Items.Clear();
-            ListBoxUdgifter.Items.Clear();
-            SumBox.Clear();
-
-            indtægter.liste.Clear();
-            udgifter.liste.Clear();
-        }
-
-        private void ButtonUndoIndtaegter_Click(object sender, RoutedEventArgs e)
-        {
-            if (indtægter.liste.Count > 0)
-            {
-                indtægter.liste.RemoveAt(indtægter.liste.Count - 1);
-                ListBoxIndtaegter.Items.RemoveAt(ListBoxIndtaegter.Items.Count - 1);
-            }
-        }
-
-        private void ButtonUndoUdgifter_Click(object sender, RoutedEventArgs e)
-        {
-            if (udgifter.liste.Count > 0)
-            {
-                udgifter.liste.RemoveAt(udgifter.liste.Count - 1);
-                ListBoxUdgifter.Items.RemoveAt(ListBoxUdgifter.Items.Count - 1);
-            }
         }
     }
 }
