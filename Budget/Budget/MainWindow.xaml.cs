@@ -47,28 +47,26 @@ namespace Budget
         }
 
 
-        private void TilføjTilIndtægter(object sender, RoutedEventArgs e)
+        private void ButtonIndtaegter(object sender, RoutedEventArgs e)
         {
             string stringInputNavn = InputNavn.GetLineText(0);
             string stringInputKroner = InputKroner.GetLineText(0);
 
-            int stringInputKroner2 = Convert.ToInt32(stringInputKroner);  
+            // int stringInputKroner2 = Convert.ToInt32(stringInputKroner);  
 
-            listBox.Items.Add(stringInputNavn + " " + stringInputKroner2);
+            listBox.Items.Add(stringInputNavn + " " + stringInputKroner);
             
             InputNavn.Clear();
             InputKroner.Clear();
 
         }
 
-        private void TilføjTilUdgifter(object sender, RoutedEventArgs e)
+        private void ButtonIndtaegter_Copy(object sender, RoutedEventArgs e)
         {
-            string stringInputNavn = InputNavn.GetLineText(0);
-            string stringInputKroner = InputKroner.GetLineText(0);
+            string stringInputNavn1 = InputNavn.GetLineText(0);
+            string stringInputKroner1 = InputKroner.GetLineText(0);
 
-            int stringInputKroner3 = Convert.ToInt32(stringInputKroner);
-
-            listBox.Items.Add(stringInputNavn + " 1" + stringInputKroner3);
+            listBox.Items.Add(stringInputNavn1 + " 1 " + stringInputKroner1);
 
             InputNavn.Clear();
             InputKroner.Clear();
